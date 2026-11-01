@@ -1,0 +1,326 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+/* ───────────────────────────────────────────────────────────────────────
+   DESIGN SYSTEM (Tailwind v4, CSS-first no tailwind.config.js)
+
+   Two halves:
+   1. @theme — registers our values as Tailwind utilities, so classes like
+      `bg-canvas`, `text-ink`, `border-hairline`, and `rounded-md` exist.
+   2. :root — the actual values. Editorial tokens (warm cream + ink + ONE
+      orange accent) come first, then a small shadcn mapping so the prebuilt
+      components in `components/ui/*` inherit the same palette.
+
+   Rule of thumb: in your own components use the editorial tokens
+   (canvas / ink / hairline / primary). Never hard-code a hex value.
+   ─────────────────────────────────────────────────────────────────────── */
+
+@theme inline {
+    --font-sans: var(--font-sans);
+    --font-mono: var(--font-mono);
+
+    /* shadcn primitives read these — keep them so components/ui/* render. */
+    --color-ring: var(--ring);
+    --color-input: var(--input);
+    --color-border: var(--border);
+    --color-destructive: var(--destructive);
+    --color-accent-foreground: var(--accent-foreground);
+    --color-accent: var(--accent);
+    --color-muted-foreground: var(--muted-foreground);
+    --color-muted: var(--muted);
+    --color-secondary-foreground: var(--secondary-foreground);
+    --color-secondary: var(--secondary);
+    --color-primary-foreground: var(--primary-foreground);
+    --color-primary: var(--primary);
+    --color-popover-foreground: var(--popover-foreground);
+    --color-popover: var(--popover);
+    --color-card-foreground: var(--card-foreground);
+    --color-card: var(--card);
+    --color-foreground: var(--foreground);
+    --color-background: var(--background);
+
+    /* Editorial design tokens:surfaces */
+    --color-canvas: var(--canvas);
+    --color-canvas-soft: var(--canvas-soft);
+    --color-surface-card: var(--surface-card);
+    --color-surface-strong: var(--surface-strong);
+
+    /* Hairlines */
+    --color-hairline: var(--hairline);
+    --color-hairline-soft: var(--hairline-soft);
+    --color-hairline-strong: var(--hairline-strong);
+
+    /* Text */
+    --color-ink: var(--ink);
+    --color-body: var(--body);
+    --color-body-strong: var(--body-strong);
+    --color-muted-ink: var(--muted-ink);
+    --color-muted-soft: var(--muted-soft);
+    --color-on-primary: var(--on-primary);
+
+    /* Brand */
+    --color-primary-active: var(--primary-active);
+
+    /* Overlay pair: light cream type + dark scrim ink, used on hero/header
+       when sitting on top of imagery */
+    --color-overlay-cream: var(--overlay-cream);
+    --color-overlay-ink: var(--overlay-ink);
+
+    /* Terminal palette — macOS-style window dots in the stack.config editor mock */
+    --color-term-red: var(--term-red);
+    --color-term-yellow: var(--term-yellow);
+    --color-term-green: var(--term-green);
+
+    /* Semantic */
+    --color-success: var(--success);
+    --color-error: var(--error);
+
+    /* Radius:8px CTA default, 12px cards */
+    --radius-xs: 4px;
+    --radius-sm: 6px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --radius-xl: 16px;
+    --radius-2xl: 20px;
+    --radius-3xl: 24px;
+    --radius-pill: 9999px;
+
+    /* Spacing:4px base, 80px section */
+    --spacing-xxs: 4px;
+    --spacing-xs: 8px;
+    --spacing-sm: 12px;
+    --spacing-base: 16px;
+    --spacing-md: 20px;
+    --spacing-lg: 24px;
+    --spacing-xl: 32px;
+    --spacing-xxl: 48px;
+    --spacing-section: 80px;
+}
+
+:root {
+    /* Brand accent:used scarcely, primary CTAs + wordmark only */
+    --primary: #f54e00;
+    --primary-foreground: #ffffff;
+    --primary-active: #d04200;
+    --on-primary: #ffffff;
+
+    /* Surfaces:warm cream canvas, never pure white */
+    --canvas: #f7f7f4;
+    --canvas-soft: #fafaf7;
+    --surface-card: #ffffff;
+    --surface-strong: #e6e5e0;
+
+    /* Hairlines:depth via 1px lines, no shadows */
+    --hairline: #e6e5e0;
+    --hairline-soft: #efeee8;
+    --hairline-strong: #cfcdc4;
+
+    /* Text:warm near-black ink */
+    --ink: #26251e;
+    --body: #5a5852;
+    --body-strong: #26251e;
+    --muted-ink: #807d72;
+    --muted-soft: #a09c92;
+
+    /* Terminal palette — macOS-style window dots, scoped to the stack.config
+       editor mock only (not a general system accent) */
+    --term-red: #ff5f57;
+    --term-yellow: #febc2e;
+    --term-green: #28c840;
+
+    /* Overlay pair: cream type + ink scrim for media-backed regions */
+    --overlay-cream: #f7f6f1;
+    --overlay-ink: #0f0f0c;
+
+    /* Semantic */
+    --success: #1f8a65;
+    --error: #cf2d56;
+
+    /* Shadcn mapping — point the prebuilt ui/* parts at our editorial palette.
+       (The unused chart + sidebar tokens that ship with shadcn were removed.) */
+    --background: var(--canvas);
+    --foreground: var(--ink);
+    --card: var(--surface-card);
+    --card-foreground: var(--ink);
+    --popover: var(--surface-card);
+    --popover-foreground: var(--ink);
+    --secondary: var(--surface-strong);
+    --secondary-foreground: var(--ink);
+    --muted: var(--canvas-soft);
+    --muted-foreground: var(--body);
+    --accent: var(--hairline-soft);
+    --accent-foreground: var(--ink);
+    --destructive: var(--error);
+    --border: var(--hairline);
+    --input: var(--hairline);
+    --ring: var(--hairline-strong);
+
+    --radius: 0.5rem;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+    }
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-feature-settings: "ss01", "cv11";
+    letter-spacing: -0.005em;
+    }
+  button:not(:disabled), [role="button"]:not(:disabled) {
+    cursor: pointer;
+    }
+  html {
+    @apply font-sans;
+    scroll-behavior: smooth;
+    /* Keep anchored sections clear of the fixed header (h-16 / sm:h-20). */
+    scroll-padding-top: 5rem;
+    }
+
+  .music-bars {
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+    height: 12px;
+  }
+
+  .music-bars > span {
+    width: 2px;
+    height: 5px;
+    border-radius: 9999px;
+    background: var(--overlay-cream);
+    animation: music-bar-bounce 0.9s ease-in-out infinite alternate;
+  }
+
+  .music-bars > span:nth-child(2) {
+    animation-delay: -0.6s;
+  }
+
+  .music-bars > span:nth-child(3) {
+    animation-delay: -0.35s;
+  }
+
+  .music-bars > span:nth-child(4) {
+    animation-delay: -0.75s;
+  }
+
+  .music-bars > span:nth-child(5) {
+    animation-delay: -0.2s;
+  }
+
+  @keyframes music-bar-bounce {
+    from {
+      height: 4px;
+    }
+
+    to {
+      height: 12px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .music-bars > span {
+      animation: none;
+    }
+  }
+
+  /* Editorial display type:weight 400, negative tracking */
+  h1, .display-mega {
+    font-weight: 400;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    }
+  h2, .display-lg {
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    }
+  h3, .display-md {
+    font-weight: 400;
+    letter-spacing: -0.0125em;
+    line-height: 1.25;
+    }
+  h4, .display-sm {
+    font-weight: 400;
+    letter-spacing: -0.005em;
+    line-height: 1.3;
+    }
+
+  code, pre, kbd, samp, .font-mono {
+    font-family: var(--font-mono), ui-monospace, SFMono-Regular, "JetBrains Mono", Menlo, Consolas, monospace;
+    font-size: 0.8125rem;
+    }
+
+  ::selection {
+    background: var(--primary);
+    color: var(--on-primary);
+    }
+}
+
+@layer components {
+  /* Section band:80px editorial rhythm with a soft top hairline */
+  .section-band {
+    @apply border-t border-hairline-soft py-20 sm:py-28;
+    }
+
+  /* Mono eyebrow:tracked 11px label used on section heads + card meta rows */
+  .eyebrow {
+    @apply font-mono text-[11px] tracking-[0.14em];
+    }
+
+  /* Mono bullet:small hairline dot rendered before a list item */
+  .mono-bullet::before {
+    content: "";
+    height: 0.25rem;
+    width: 0.25rem;
+    border-radius: 9999px;
+    background: var(--hairline-strong);
+    }
+
+  /* Caption:uppercase tracked label, used on section labels + timeline pills */
+  .caption-uppercase {
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 1.4;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    }
+
+}
+
+/* Selected-work carousel countdown.
+   The ring depletes (its drawn arc shrinks) over one slide's lifetime, and the
+   timeline's leading segment fills in lockstep. Both run for SLIDE_SECONDS,
+   linearly, and restart whenever the active slide changes — in the component
+   that restart is done with `key={active}`, which remounts the element and so
+   replays the animation from 0. The component only mounts these elements when
+   motion is allowed, so the reduced-motion fallbacks live there, not here.
+   `--cd-circumference` is supplied inline by the ring (it depends on size). */
+@keyframes selected-work-ring {
+  from { stroke-dashoffset: 0; }
+  to { stroke-dashoffset: var(--cd-circumference); }
+}
+
+@keyframes selected-work-fill {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+@keyframes selected-work-fill-y {
+  from { transform: scaleY(0); }
+  to { transform: scaleY(1); }
+}
+
+/* Reduced-motion safety net (WCAG 2.3.3). JS-driven reveals additionally
+   gate on useReducedMotion(); this neutralizes CSS-driven motion globally. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
