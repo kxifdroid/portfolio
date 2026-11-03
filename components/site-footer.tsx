@@ -18,8 +18,8 @@ export function SiteFooter(): React.ReactElement {
               mKasif
             </Link>
             <p className="mt-3 max-w-[32ch] text-sm leading-[1.55] text-body">
-              Independent developer building AI-first SaaS products. Available
-              for selected engagements.
+              Independent developer building AI-first products. Available
+              for new work.
             </p>
           </div>
 
