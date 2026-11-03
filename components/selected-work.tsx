@@ -154,7 +154,7 @@ function ProjectCard({
                 tabIndex={isActive ? undefined : -1}
                 className="group/link inline-flex items-center gap-2 border-b border-transparent pb-0.5 text-sm font-medium text-ink transition-[gap,border-color] hover:gap-3 hover:border-ink"
               >
-                View case study
+                View
                 <ArrowUpRightIcon
                   size={14}
                   weight="bold"
