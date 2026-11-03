@@ -4,16 +4,18 @@ import * as React from "react"
 import { motion, useMotionValue, useReducedMotion, useSpring } from "motion/react"
 
 const CURSOR_COLOR = "#26251E"
+const TRAIL_COLOR = "#F54E00"
 const ACTIVE_CLASS = "custom-cursor-active"
 const INTERACTIVE_SELECTOR =
   "a, button, [role='button'], input, textarea, select, label, summary, [data-cursor='interactive']"
 
 // Trail settings
 const TRAIL_LIFE_MS = 260 // how long each point lives (shorter = slighter)
-const TRAIL_MAX_WIDTH = 1.6 // thickness near the cursor (px)
+const TRAIL_MAX_WIDTH = 2.2 // thickness near the cursor (px)
 const TRAIL_MIN_WIDTH = 0.3 // thickness at the tail (px)
-const TRAIL_OPACITY = 0.3 // overall trail strength
+const TRAIL_OPACITY = 0.45 // overall trail strength
 const TRAIL_MIN_DISTANCE = 0.5 // ignore tiny movements
+
 
 type TrailPoint = { x: number; y: number; t: number }
 
@@ -119,7 +121,7 @@ export function CustomCursor(): React.ReactElement | null {
       if (points.length > 1) {
         ctx.lineCap = "round"
         ctx.lineJoin = "round"
-        ctx.strokeStyle = CURSOR_COLOR
+        ctx.strokeStyle = TRAIL_COLOR
 
         for (let i = 1; i < points.length; i++) {
           const p0 = points[i - 1]
