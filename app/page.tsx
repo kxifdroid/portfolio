@@ -10,7 +10,7 @@ import { Stack } from "@/components/stack"
 import { getLocation } from "@/lib/location"
 import { getWeather } from "@/lib/weather"
 
-const title = "mKasif · Full-stack engineer, AI-first"
+const title = "Portfolio"
 const description =
   "Full-stack engineer designing and shipping AI-native software from the inference layer to the last interaction."
 

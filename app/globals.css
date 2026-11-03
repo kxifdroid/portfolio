@@ -178,6 +178,13 @@
     scroll-padding-top: 5rem;
     }
 
+  @media (pointer: fine) {
+    html.custom-cursor-active,
+    html.custom-cursor-active * {
+      cursor: none !important;
+    }
+  }
+
   .music-bars {
     display: inline-flex;
     align-items: center;
